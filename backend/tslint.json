@@ -1,0 +1,36 @@
+{
+  "extends": "tslint:recommended",
+  //"rulesDirectory": ["path/to/custom/rules/directory/", "another/path/"],
+  "rules": {
+    "object-literal-shorthand": false,
+    "max-line-length": {
+      "options": [240]
+    },
+    "no-for-in": true,
+    "no-import-side-effect": true,
+    "no-shadowed-variable": false,
+    "new-parens": true,
+    "ban-types": false,
+    "only-arrow-functions": false,
+    "no-arg": true,
+    "variable-name": false,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-consecutive-blank-lines": false,
+    "no-unused-expression": false,
+    "max-classes-per-file": false,
+    "extends": ["plugin:prettier/recommended", "tslint-config-prettier"],
+    "rules": {
+      "prettier": true
+    },
+    "no-console": {
+      "severity": "off",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    }
+  },
+  "jsRules": {
+    "max-line-length": {
+      "options": [120]
+    }
+  }
+}

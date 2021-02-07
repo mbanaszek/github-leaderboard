@@ -1,9 +1,7 @@
 import { Octokit } from "@octokit/core";
-import { Maybe } from "graphql/jsutils/Maybe";
 
 import { isNil, isNotNil } from "../functional/logic";
-
-const APIAuthenticationToken = `61698582015b6623e8925de5a0264934f61427ef`;
+import { Maybe } from "../functional/maybe";
 
 export type ContributorStats = {
     name: string;
@@ -21,11 +19,10 @@ export class RepositoryNotFound extends Error {}
 export class CanNotFetchRepositoryStatistics extends Error {}
 
 export const fetchRepositoryContributorsStats = async (
-    repositoryOwnerLogin: string,
+    repositoryOwner: string,
     repositoryName: string
 ): Promise<ContributorStats[]> => {
-
-    const responseData = await fetchStatsFromAPI(repositoryOwnerLogin, repositoryName);
+    const responseData = await fetchStatsFromAPI(repositoryOwner, repositoryName);
 
     const contributorsStatistics: ContributorStats[] = [];
     for (const contributorData of responseData) {
@@ -52,18 +49,18 @@ export const fetchRepositoryContributorsStats = async (
 }
 
 const fetchStatsFromAPI = async (
-    repositoryOwnerLogin: string,
+    repositoryOwner: string,
     repositoryName: string
 ): Promise<ResponseData> => {
-    const octokit = new Octokit({ auth: APIAuthenticationToken });
-
+    const octokit = new Octokit({ auth: process.env.GITHUB_AUTHENTICATION_TOKEN });
     let response;
     try {
         response = await octokit.request('GET /repos/{owner}/{repo}/stats/contributors', {
-            owner: repositoryOwnerLogin,
+            owner: repositoryOwner,
             repo: repositoryName
         });
     } catch (error) {
+
         if (isNotNil(error.status) && error.status === 404) throw new RepositoryNotFound();
 
         // TODO: log the error.

@@ -7,7 +7,7 @@ import {
     fetchRepositoryContributorsStats,
     RepositoryNotFound,
     ResponseData
-} from "./fetchRepositoryContributorsStats";
+} from "../fetchRepositoryContributorsStats";
 
 describe('Fetching contributors statistics from GitHub.', () => {
 
@@ -25,7 +25,7 @@ describe('Fetching contributors statistics from GitHub.', () => {
 
     test('CAN fetch statistics for existing repository.', async () => {
         // Given
-        const dummyOwnerName = 'dummy-owner';
+        const dummyRepositoryOwner = 'dummy-owner';
         const dummyRepositoryName = 'dummy-repo';
 
         const expectedContributorsStatistics: ContributorStats[] = [{
@@ -35,11 +35,11 @@ describe('Fetching contributors statistics from GitHub.', () => {
             deletions: 3
         }];
 
-        stubGitHubAPISuccessResponse(dummyOwnerName, dummyRepositoryName, expectedContributorsStatistics);
+        stubGitHubAPISuccessResponse(dummyRepositoryOwner, dummyRepositoryName, expectedContributorsStatistics);
 
         // When
         const actualContributorsStatistics = await fetchRepositoryContributorsStats(
-            dummyOwnerName,
+            dummyRepositoryOwner,
             dummyRepositoryName
         );
 
@@ -49,28 +49,28 @@ describe('Fetching contributors statistics from GitHub.', () => {
 
     test('CAN NOT fetch statistics for not existing repository.', async () => {
         // Given
-        const dummyOwnerName = 'notExistingOwner';
+        const dummyRepositoryOwner = 'notExistingOwner';
         const dummyRepositoryName = 'notExistingRepositoryName';
 
-        stubGitHubAPIFailureResponse(dummyRepositoryName, dummyOwnerName, 404);
+        stubGitHubAPIFailureResponse(dummyRepositoryName, dummyRepositoryOwner, 404);
 
         // When & Then
         await expect(fetchRepositoryContributorsStats(
-            dummyOwnerName,
+            dummyRepositoryOwner,
             dummyRepositoryName
         )).to.be.rejectedWith(RepositoryNotFound)
     });
 
     test('CAN NOT fetch statistics when there is a GitHub 500 error.', async () => {
         // Given
-        const dummyOwnerName = 'notExistingOwner';
+        const dummyRepositoryOwner = 'notExistingOwner';
         const dummyRepositoryName = 'notExistingRepositoryName';
 
-        stubGitHubAPIFailureResponse(dummyRepositoryName, dummyOwnerName, 500);
+        stubGitHubAPIFailureResponse(dummyRepositoryName, dummyRepositoryOwner, 500);
 
         // When & Then
         await expect(fetchRepositoryContributorsStats(
-            dummyOwnerName,
+            dummyRepositoryOwner,
             dummyRepositoryName
         )).to.be.rejectedWith(CanNotFetchRepositoryStatistics)
     });
