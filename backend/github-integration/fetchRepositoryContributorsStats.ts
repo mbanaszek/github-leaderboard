@@ -10,7 +10,7 @@ export type ContributorStats = {
     deletions: number;
 };
 
-export type ResponseData = {
+export type ApiResponseData = {
     author: Maybe<{ login: string; avatar_url: string; }>;
     weeks: { a?: number; d?: number; }[];
 }[];
@@ -51,7 +51,7 @@ export const fetchRepositoryContributorsStats = async (
 const fetchStatsFromAPI = async (
     repositoryOwner: string,
     repositoryName: string
-): Promise<ResponseData> => {
+): Promise<ApiResponseData> => {
     const octokit = new Octokit({ auth: process.env.GITHUB_AUTHENTICATION_TOKEN });
     let response;
     try {

@@ -14,17 +14,6 @@ import {CustomErrorName, getErrorCode, getErrorMessage} from "../errors";
 describe('Fetching repository contributors stats using GraphQL.', () => {
     let fetchRepositoryContributorsStatsMock: SinonStub<[string, string]>;
 
-    beforeAll(() => {
-        fetchRepositoryContributorsStatsMock = stub(
-            fetchRepositoryContributorsStatsModule,
-            'fetchRepositoryContributorsStats'
-        );
-    });
-
-    beforeEach(() => {
-        fetchRepositoryContributorsStatsMock.reset();
-    });
-
     test('CAN fetch statistics for existing repository.', async () => {
         // Given
         const dummyRepositoryOwner = 'dummy-owner';
@@ -63,6 +52,7 @@ describe('Fetching repository contributors stats using GraphQL.', () => {
     test.each([
         [ CustomErrorName.RepositoryNotFound, RepositoryNotFound ],
         [ CustomErrorName.CanNotFetchRepositoryStats, CanNotFetchRepositoryStatistics ],
+        [ CustomErrorName.UnknownError, Error ],
     ])('CAN NOT fetch statistics when there is an error (%s).', async (
         expectedErrorCode,
         givenError
@@ -86,7 +76,7 @@ describe('Fetching repository contributors stats using GraphQL.', () => {
                     dummyRepositoryName
                 );
 
-                const expectResponseBody = {
+                const expectedResponseBody = {
                     errors: [{
                         errorName: expectedErrorCode,
                         message: getErrorMessage(expectedErrorCode),
@@ -97,9 +87,20 @@ describe('Fetching repository contributors stats using GraphQL.', () => {
                     }
                 };
 
-                expect(response.body).to.be.deep.equalInAnyOrder(expectResponseBody);
+                expect(response.body).to.be.deep.equalInAnyOrder(expectedResponseBody);
             });
 
+    });
+
+    beforeAll(() => {
+        fetchRepositoryContributorsStatsMock = stub(
+            fetchRepositoryContributorsStatsModule,
+            'fetchRepositoryContributorsStats'
+        );
+    });
+
+    beforeEach(() => {
+        fetchRepositoryContributorsStatsMock.reset();
     });
 });
 

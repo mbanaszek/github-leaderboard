@@ -6,22 +6,10 @@ import {
     ContributorStats,
     fetchRepositoryContributorsStats,
     RepositoryNotFound,
-    ResponseData
+    ApiResponseData
 } from "../fetchRepositoryContributorsStats";
 
 describe('Fetching contributors statistics from GitHub.', () => {
-
-    beforeAll(() => {
-        nock.disableNetConnect();
-    });
-
-    beforeEach(() => {
-        nock.cleanAll();
-    });
-
-    afterAll(() => {
-        nock.enableNetConnect();
-    });
 
     test('CAN fetch statistics for existing repository.', async () => {
         // Given
@@ -49,10 +37,10 @@ describe('Fetching contributors statistics from GitHub.', () => {
 
     test('CAN NOT fetch statistics for not existing repository.', async () => {
         // Given
-        const dummyRepositoryOwner = 'notExistingOwner';
-        const dummyRepositoryName = 'notExistingRepositoryName';
+        const dummyRepositoryOwner = 'dummy-owner';
+        const dummyRepositoryName = 'dummy-repo';
 
-        stubGitHubAPIFailureResponse(dummyRepositoryName, dummyRepositoryOwner, 404);
+        stubGitHubAPIFailureResponse(dummyRepositoryOwner, dummyRepositoryName, 404);
 
         // When & Then
         await expect(fetchRepositoryContributorsStats(
@@ -74,10 +62,22 @@ describe('Fetching contributors statistics from GitHub.', () => {
             dummyRepositoryName
         )).to.be.rejectedWith(CanNotFetchRepositoryStatistics)
     });
+
+    beforeAll(() => {
+        nock.disableNetConnect();
+    });
+
+    beforeEach(() => {
+        nock.cleanAll();
+    });
+
+    afterAll(() => {
+        nock.enableNetConnect();
+    });
 });
 
 const stubGitHubAPISuccessResponse = (repositoryOwnerLogin: string, repositoryName: string, contributorsStats: ContributorStats[]): void => {
-    const responseData: ResponseData = contributorsStats.map((contributorStats) => ({
+    const responseData: ApiResponseData = contributorsStats.map((contributorStats) => ({
         author: {
             login: contributorStats.name,
             avatar_url: contributorStats.avatarUrl
@@ -95,8 +95,6 @@ const stubGitHubAPISuccessResponse = (repositoryOwnerLogin: string, repositoryNa
 
 const stubGitHubAPIFailureResponse = (repositoryOwnerLogin: string, repositoryName: string, HTTPStatusCode: 404 | 500): void => {
     nock('https://api.github.com')
-        .persist()
         .get(`/repos/${repositoryOwnerLogin}/${repositoryName}/stats/contributors`)
-        .reply(HTTPStatusCode, {});
-
+        .reply(HTTPStatusCode);
 }
