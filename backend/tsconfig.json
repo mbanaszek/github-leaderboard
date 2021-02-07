@@ -17,7 +17,7 @@
     "inlineSources": true,
     "allowJs": true,
     "resolveJsonModule": true,
-    "types": ["node", "jest", "chai-as-promised", "deep-equal-in-any-order", "sinon-chai", "chai-uuid"]
+    "types": ["node", "jest", "chai-as-promised", "deep-equal-in-any-order", "sinon-chai"]
   },
   "exclude": [
     "node_modules"
