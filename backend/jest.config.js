@@ -1,18 +1,18 @@
 module.exports = {
-    preset: 'ts-jest',
-    testEnvironment: 'node',
+    preset: "ts-jest",
+    testEnvironment: "node",
     transform: {
-        '^.+\\.tsx?$': 'ts-jest',
+        "^.+\\.tsx?$": "ts-jest",
     },
-    testRegex: '(/__tests__/.*|(\\.|/)(test|spec|steps))\\.(jsx?|tsx?)$',
+    testRegex: "(/__tests__/.*|(\\.|/)(test|spec|steps))\\.(jsx?|tsx?)$",
     testMatch: null,
-    testPathIgnorePatterns: ['/lib/', '/node_modules/', '/dist/'],
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+    testPathIgnorePatterns: ["/lib/", "/node_modules/", "/dist/"],
+    moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     collectCoverage: false,
-    setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+    setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
     testTimeout: 70000,
     globals: {
-        'ts-jest': {
+        "ts-jest": {
             isolatedModules: true,
         },
     },

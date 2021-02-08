@@ -1,26 +1,26 @@
-import {expect} from "chai";
-import request from 'supertest';
-import {SinonStub, stub} from 'sinon';
+import { expect } from "chai";
+import request from "supertest";
+import { SinonStub, stub } from "sinon";
 
-import {app} from "../../app";
+import { app } from "../../app";
 import * as fetchRepositoryContributorsStatsModule from "../../../github-integration/fetchRepositoryContributorsStats";
 import {
     CanNotFetchRepositoryStatistics,
     ContributorStats,
     RepositoryNotFound
 } from "../../../github-integration/fetchRepositoryContributorsStats";
-import {CustomErrorName, getErrorCode, getErrorMessage} from "../errors";
+import { CustomErrorName, getErrorCode, getErrorMessage } from "../errors";
 
-describe('Fetching repository contributors stats using GraphQL.', () => {
+describe("Fetching repository contributors stats using GraphQL.", () => {
     let fetchRepositoryContributorsStatsMock: SinonStub<[string, string]>;
 
-    test('CAN fetch statistics for existing repository.', async () => {
+    test("CAN fetch statistics for existing repository.", async () => {
         // Given
-        const dummyRepositoryOwner = 'dummy-owner';
-        const dummyRepositoryName = 'dummy-repo';
+        const dummyRepositoryOwner = "dummy-owner";
+        const dummyRepositoryName = "dummy-repo";
         const contributorsStats: ContributorStats[] = [{
-            name: 'dummy-name',
-            avatarUrl: 'http://dummy-avatar.url',
+            name: "dummy-name",
+            avatarUrl: "http://dummy-avatar.url",
             additions: 5,
             deletions: 3
         }];
@@ -53,13 +53,13 @@ describe('Fetching repository contributors stats using GraphQL.', () => {
         [ CustomErrorName.RepositoryNotFound, RepositoryNotFound ],
         [ CustomErrorName.CanNotFetchRepositoryStats, CanNotFetchRepositoryStatistics ],
         [ CustomErrorName.UnknownError, Error ],
-    ])('CAN NOT fetch statistics when there is an error (%s).', async (
+    ])("CAN NOT fetch statistics when there is an error (%s).", async (
         expectedErrorCode,
         givenError
     ) => {
         // Given
-        const dummyRepositoryOwner = 'dummy-owner';
-        const dummyRepositoryName = 'dummy-repo';
+        const dummyRepositoryOwner = "dummy-owner";
+        const dummyRepositoryName = "dummy-repo";
         fetchRepositoryContributorsStatsMock.rejects(new givenError());
 
         // When
@@ -95,7 +95,7 @@ describe('Fetching repository contributors stats using GraphQL.', () => {
     beforeAll(() => {
         fetchRepositoryContributorsStatsMock = stub(
             fetchRepositoryContributorsStatsModule,
-            'fetchRepositoryContributorsStats'
+            "fetchRepositoryContributorsStats"
         );
     });
 
@@ -108,7 +108,7 @@ const createGraphQLQuery = (repositoryOwner: string, repositoryName: string): st
     return `
         {
           contributorsStats(
-            repositoryOwner: "${repositoryOwner}", 
+            repositoryOwner: "${repositoryOwner}",
             repositoryName: "${repositoryName}"
             ) {
                 name
@@ -118,4 +118,4 @@ const createGraphQLQuery = (repositoryOwner: string, repositoryName: string): st
             }
         }
     `;
-}
+};

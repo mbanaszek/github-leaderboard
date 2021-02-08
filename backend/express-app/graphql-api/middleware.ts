@@ -1,14 +1,14 @@
-import {graphqlHTTP} from "express-graphql";
-import {GraphQLError} from "graphql";
+import { graphqlHTTP } from "express-graphql";
+import { GraphQLError } from "graphql";
 
-import {schema} from "./schema";
-import {root} from "./resolvers";
-import {getErrorCode, getErrorMessage, isCustomErrorName} from "./errors";
-import {isNil} from "../../functional/logic";
+import { schema } from "./schema";
+import { root } from "./resolvers";
+import { getErrorCode, getErrorMessage, isCustomErrorName } from "./errors";
+import { isNil } from "../../functional/logic";
 
-export const setupGraphQLMiddleware = () => {
+export const setupGraphQLMiddleware = (): any => {
     if (isNil(process.env.GITHUB_AUTHENTICATION_TOKEN)) {
-        throw new Error("You need to setup GITHUB_AUTHENTICATION_TOKEN env variable.")
+        throw new Error("You need to setup GITHUB_AUTHENTICATION_TOKEN env variable.");
     }
 
     return graphqlHTTP({
@@ -29,4 +29,4 @@ export const setupGraphQLMiddleware = () => {
             return error;
         }
     });
-}
+};

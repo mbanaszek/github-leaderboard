@@ -46,7 +46,7 @@ export const fetchRepositoryContributorsStats = async (
     }
 
     return contributorsStatistics;
-}
+};
 
 const fetchStatsFromAPI = async (
     repositoryOwner: string,
@@ -55,7 +55,7 @@ const fetchStatsFromAPI = async (
     const octokit = new Octokit({ auth: process.env.GITHUB_AUTHENTICATION_TOKEN });
     let response;
     try {
-        response = await octokit.request('GET /repos/{owner}/{repo}/stats/contributors', {
+        response = await octokit.request("GET /repos/{owner}/{repo}/stats/contributors", {
             owner: repositoryOwner,
             repo: repositoryName
         });
@@ -72,4 +72,4 @@ const fetchStatsFromAPI = async (
     if (response.status !== 200) throw new CanNotFetchRepositoryStatistics();
 
     return response.data;
-}
+};

@@ -6,13 +6,13 @@ import cors from "cors";
 
 import { setupAppRoutes } from "./routes";
 
-dotenv.config({ path: path.join(__dirname, '../.env') });
+dotenv.config({ path: path.join(__dirname, "../.env") });
 
-export let app = express();
+export const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(cors())
+app.use(cors());
 
 setupAppRoutes(app);
