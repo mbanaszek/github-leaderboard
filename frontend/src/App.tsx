@@ -1,44 +1,39 @@
-import React from 'react';
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 import { RepositoryURLInput } from "./components/RepositoryURLInput";
 import { isNil } from "./functional/logic";
-import {Maybe} from "./functional/maybe";
-import {ContributorsStatsTable, EmptyContributorsStatsTable} from "./components/ContributorsStatsTable";
-import {getRepositoryDetails, RepositoryDetails} from "./graphql/contributorsStatistics";
-
-interface AppProps {}
+import { Maybe } from "./functional/maybe";
+import { ContributorsStatsTable, EmptyContributorsStatsTable } from "./components/ContributorsStatsTable";
+import { getRepositoryDetails, RepositoryDetails } from "./graphql/contributorsStatistics";
 
 interface AppState {
     repositoryURL: string;
     repositoryDetails: Maybe<RepositoryDetails>;
 }
 
-export class App extends React.Component<AppProps, AppState> {
+export class App extends React.Component<unknown, AppState> {
 
-    constructor(props: AppProps) {
+    constructor(props: unknown) {
         super(props);
 
         this.state = {
-            repositoryURL: '',
+            repositoryURL: "",
             repositoryDetails: null
         };
 
         this.onRepositoryURLUpdate = this.onRepositoryURLUpdate.bind(this);
     }
 
-    async onRepositoryURLUpdate(event: React.ChangeEvent<HTMLInputElement>): Promise<void> {
-        const repositoryURL = event.target.value;
-        const repositoryDetails = getRepositoryDetails(repositoryURL);
-
+    onRepositoryURLUpdate(repositoryURL: string): void {
         this.setState({
             ...this.state,
             repositoryURL: repositoryURL,
-            repositoryDetails: repositoryDetails
+            repositoryDetails: getRepositoryDetails(repositoryURL)
         });
     }
 
-    render() {
+    render() : JSX.Element  {
         return (
             <div className="App">
                 <Container>
@@ -60,8 +55,8 @@ export class App extends React.Component<AppProps, AppState> {
                     <Row className={"mt-4 mb-4"}>
                         {
                             isNil(this.state.repositoryDetails)
-                            ? <EmptyContributorsStatsTable/>
-                            : <ContributorsStatsTable repositoryDetails={this.state.repositoryDetails} />
+                                ? <EmptyContributorsStatsTable/>
+                                : <ContributorsStatsTable repositoryDetails={this.state.repositoryDetails} />
                         }
                     </Row>
                 </Container>

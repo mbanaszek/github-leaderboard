@@ -1,4 +1,4 @@
-import {isNil} from "./logic";
+import { isNil } from "./logic";
 
 export type Maybe<T> = T | null;
 

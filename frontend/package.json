@@ -28,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "npx eslint src/",
+    "eslint-fix": "npx eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +51,11 @@
     ]
   },
   "devDependencies": {
-    "@types/prop-types": "^15.7.3"
+    "@types/parse-github-url": "^1.0.0",
+    "@types/prop-types": "^15.7.3",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-react": "^7.22.0"
   }
 }

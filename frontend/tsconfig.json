@@ -4,13 +4,12 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext",
-      "es2015"
+      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -19,7 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "react/prop-types": [2, { "ignore": ["children"] }]
   },
   "include": [
     "src"

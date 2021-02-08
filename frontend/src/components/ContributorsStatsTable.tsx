@@ -1,16 +1,16 @@
-import {Table} from "react-bootstrap";
-import React, {FunctionComponent} from "react";
-import Image from 'react-bootstrap/Image'
-import {useQuery} from "@apollo/client";
+import { Table } from "react-bootstrap";
+import React, { FunctionComponent } from "react";
+import Image from "react-bootstrap/Image";
+import { useQuery } from "@apollo/client";
 
 import {
     ContributorStats,
     createContributorsStatisticsQuery,
     RepositoryDetails
 } from "../graphql/contributorsStatistics";
-import {Loader} from "./Loader";
-import {isNil, isNotNil} from "../functional/logic";
-import {ErrorMessage} from "./ErrorMessage";
+import { Loader } from "./Loader";
+import { isNil, isNotNil } from "../functional/logic";
+import { ErrorMessage } from "./ErrorMessage";
 
 interface ContributorsStatsTableProps {
     repositoryDetails: RepositoryDetails;
@@ -18,12 +18,12 @@ interface ContributorsStatsTableProps {
 
 export const ContributorsStatsTable: FunctionComponent<ContributorsStatsTableProps> = ({
     repositoryDetails
-}): JSX.Element => {
-    const { loading, error, data } = useQuery(createContributorsStatisticsQuery(repositoryDetails!));
+} : ContributorsStatsTableProps): JSX.Element => {
+    const { loading, error, data } = useQuery(createContributorsStatisticsQuery(repositoryDetails));
 
     if (loading) return <Loader/>;
 
-    if (isNotNil(error)) return <ErrorMessage text={isNil(error.networkError) ? error.message : 'Network problems.'}/>;
+    if (isNotNil(error)) return <ErrorMessage text={isNil(error.networkError) ? error.message : "Network problems."}/>;
 
     if (isNil(data)) return <EmptyContributorsStatsTable/>;
 
@@ -51,9 +51,9 @@ export const ContributorsStatsTable: FunctionComponent<ContributorsStatsTablePro
             }
         </StatsTable>
     );
-}
+};
 
-export const EmptyContributorsStatsTable: FunctionComponent<{}> = ({}): JSX.Element => (
+export const EmptyContributorsStatsTable: FunctionComponent = (): JSX.Element => (
     <StatsTable>
         <tr>
             <td colSpan={6}>Please provide a valid GitHub repository URL.</td>
@@ -61,7 +61,10 @@ export const EmptyContributorsStatsTable: FunctionComponent<{}> = ({}): JSX.Elem
     </StatsTable>
 );
 
-export const StatsTable: FunctionComponent<{}> = ({children}): JSX.Element => (
+interface StatsTableProps {
+    children: React.ReactNode;
+}
+export const StatsTable: FunctionComponent<StatsTableProps> = ({ children }: StatsTableProps): JSX.Element => (
     <Table striped bordered hover>
         <thead>
             <tr>
@@ -87,6 +90,6 @@ const sortContributorsStatsByHighestTotalChanges = (stats: ContributorStats[]): 
         const firstTotalChanges = firstStats.additions + firstStats.deletions;
         const secondTotalChanges = secondStats.additions + secondStats.deletions;
         return secondTotalChanges - firstTotalChanges;
-    })
-}
+    });
+};
 

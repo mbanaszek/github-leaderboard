@@ -1,4 +1,4 @@
-import {Container, Spinner} from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import React from "react";
 
 export const Loader = (): JSX.Element => {
@@ -9,4 +9,4 @@ export const Loader = (): JSX.Element => {
             </Spinner>
         </Container>
     );
-}
+};
