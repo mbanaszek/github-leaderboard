@@ -1,22 +1,13 @@
 import React, {FunctionComponent} from "react";
-import {Alert, Form} from "react-bootstrap";
-
-import {isNotNil} from "../functional/logic";
-import {Maybe} from "../functional/maybe";
+import { Form } from "react-bootstrap";
 
 interface RepositoryURLInputProps {
     repositoryURL: string;
-    errorMessage: Maybe<string>;
-    disabled: boolean;
-    onRepositoryURLFieldUpdate: any;
     onRepositoryURLUpdate: any;
 }
 
 export const RepositoryURLInput: FunctionComponent<RepositoryURLInputProps> = ({
     repositoryURL,
-    errorMessage,
-    disabled,
-    onRepositoryURLFieldUpdate,
     onRepositoryURLUpdate
 }): JSX.Element => {
     const onKeyDown = (event: any): void => {
@@ -29,17 +20,12 @@ export const RepositoryURLInput: FunctionComponent<RepositoryURLInputProps> = ({
                 <input
                     type="text"
                     className={'form-control'}
-                    placeholder="e.g. https://github.com/stoplightio/prism"
+                    placeholder="e.g. 'https://github.com/stoplightio/prism' or 'stoplightio/prism'"
                     value={repositoryURL}
-                    onChange={onRepositoryURLFieldUpdate}
-                    onBlur={onRepositoryURLUpdate}
+                    onChange={onRepositoryURLUpdate}
                     onKeyDown={onKeyDown}
-                    disabled={disabled}
                 />
             </Form.Group>
-            {
-                isNotNil(errorMessage) ? <Alert key='error' variant='danger'>{errorMessage}</Alert> : null
-            }
         </div>
     );
 }
