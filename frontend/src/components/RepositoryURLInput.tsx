@@ -4,27 +4,42 @@ import {Alert, Form} from "react-bootstrap";
 import {isNotNil} from "../functional/logic";
 import {Maybe} from "../functional/maybe";
 
-export type RepositoryURLInputProps = {
+interface RepositoryURLInputProps {
     repositoryURL: string;
     errorMessage: Maybe<string>;
+    disabled: boolean;
+    onRepositoryURLFieldUpdate: any;
+    onRepositoryURLUpdate: any;
 }
 
 export const RepositoryURLInput: FunctionComponent<RepositoryURLInputProps> = ({
     repositoryURL,
-    errorMessage
+    errorMessage,
+    disabled,
+    onRepositoryURLFieldUpdate,
+    onRepositoryURLUpdate
 }): JSX.Element => {
+    const onKeyDown = (event: any): void => {
+        if (event.key !== 'Enter') return;
+        onRepositoryURLUpdate(event);
+    }
     return (
-        <Form>
-            <Form.Group controlId="formBasicEmail">
-                <Form.Control
-                    type="email"
+        <div>
+            <Form.Group controlId="repositoryURL">
+                <input
+                    type="text"
+                    className={'form-control'}
                     placeholder="e.g. https://github.com/stoplightio/prism"
                     value={repositoryURL}
+                    onChange={onRepositoryURLFieldUpdate}
+                    onBlur={onRepositoryURLUpdate}
+                    onKeyDown={onKeyDown}
+                    disabled={disabled}
                 />
             </Form.Group>
             {
                 isNotNil(errorMessage) ? <Alert key='error' variant='danger'>{errorMessage}</Alert> : null
             }
-        </Form>
+        </div>
     );
 }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.3.8",
+    "@forevolve/bootstrap-dark": "^1.0.0-alpha.1091",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
@@ -12,6 +13,9 @@
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
     "bootstrap": "^4.6.0",
+    "graphql": "^15.5.0",
+    "is-github-url": "^1.2.2",
+    "parse-github-url": "^1.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",

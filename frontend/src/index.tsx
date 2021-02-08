@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@forevolve/bootstrap-dark/dist/css/bootstrap-dark.css';
 import App from './App';
 
 ReactDOM.render(
