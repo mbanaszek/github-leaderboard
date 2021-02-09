@@ -18,8 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "react/prop-types": [2, { "ignore": ["children"] }]
+    "jsx": "react-jsx"
   },
   "include": [
     "src"

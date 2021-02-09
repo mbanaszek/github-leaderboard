@@ -7,10 +7,6 @@ import { getErrorCode, getErrorMessage, isCustomErrorName } from "./errors";
 import { isNil } from "../../functional/logic";
 
 export const setupGraphQLMiddleware = (): any => {
-    if (isNil(process.env.GITHUB_AUTHENTICATION_TOKEN)) {
-        throw new Error("You need to setup GITHUB_AUTHENTICATION_TOKEN env variable.");
-    }
-
     return graphqlHTTP({
         schema: schema,
         rootValue: root,

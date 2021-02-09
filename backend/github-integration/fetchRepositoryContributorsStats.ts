@@ -52,7 +52,7 @@ const fetchStatsFromAPI = async (
     repositoryOwner: string,
     repositoryName: string
 ): Promise<ApiResponseData> => {
-    const octokit = new Octokit({ auth: process.env.GITHUB_AUTHENTICATION_TOKEN });
+    const octokit = new Octokit();
     let response;
     try {
         response = await octokit.request("GET /repos/{owner}/{repo}/stats/contributors", {

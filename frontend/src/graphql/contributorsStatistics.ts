@@ -19,7 +19,6 @@ export type RepositoryDetails = {
 export const getRepositoryDetails = (githubURL: string): Maybe<RepositoryDetails> => {
 
     const parsedGithubURL = parseGithubURL(githubURL);
-    console.log(parsedGithubURL);
 
     if (isNil(parsedGithubURL) || isNil(parsedGithubURL.repository)) return null;
 

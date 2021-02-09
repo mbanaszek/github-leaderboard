@@ -1,0 +1,15 @@
+{
+  "name": "github-leaderboard-demo-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node backend/dist/express-app/runServer.js",
+    "postinstall": "cd backend/ && npm install && ./node_modules/.bin/tsc --project tsconfig.production.json",
+    "heroku-postbuild": "cd frontend/ && npm install  && npm run build"
+  }
+}
