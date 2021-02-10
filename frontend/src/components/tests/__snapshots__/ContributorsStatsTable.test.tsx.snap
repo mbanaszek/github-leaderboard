@@ -1,0 +1,223 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Rendering table Error message (like repository not found). 1`] = `
+<table
+  className="table table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th />
+      <th>
+        Name
+      </th>
+      <th />
+      <th />
+      <th
+        className="text-right"
+      >
+        Total score
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        colSpan={6}
+      >
+        Please provide a valid GitHub repository URL.
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Rendering table Loading. 1`] = `
+<table
+  className="table table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th />
+      <th>
+        Name
+      </th>
+      <th />
+      <th />
+      <th
+        className="text-right"
+      >
+        Total score
+      </th>
+    </tr>
+  </thead>
+  <tbody />
+</table>
+`;
+
+exports[`Rendering table Network error message. 1`] = `
+<div
+  className="text-center container"
+>
+  <div
+    className="fade alert alert-danger show"
+    role="alert"
+  >
+    Network problems.
+  </div>
+</div>
+`;
+
+exports[`Rendering table No results. 1`] = `
+<table
+  className="table table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th />
+      <th>
+        Name
+      </th>
+      <th />
+      <th />
+      <th
+        className="text-right"
+      >
+        Total score
+      </th>
+    </tr>
+  </thead>
+  <tbody />
+</table>
+`;
+
+exports[`Rendering table Results. 1`] = `
+<table
+  className="table table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th />
+      <th>
+        Name
+      </th>
+      <th />
+      <th />
+      <th
+        className="text-right"
+      >
+        Total score
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        1
+        .
+      </td>
+      <td>
+        <img
+          className="img-thumbnail"
+          src="http://dummy.avatar/url-2"
+          width="150 px"
+        />
+      </td>
+      <td>
+        dummy-name-2
+      </td>
+      <td
+        className="text-right"
+      >
+        <span
+          className="text-success"
+        >
+          + 
+          3
+           additions
+        </span>
+      </td>
+      <td
+        className="text-right"
+      >
+        <span
+          className="text-danger"
+        >
+          - 
+          4
+           deletions
+        </span>
+      </td>
+      <td
+        className="text-right"
+      >
+        <span
+          className="text-info"
+        >
+          7
+           updates
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2
+        .
+      </td>
+      <td>
+        <img
+          className="img-thumbnail"
+          src="http://dummy.avatar/url-1"
+          width="150 px"
+        />
+      </td>
+      <td>
+        dummy-name-1
+      </td>
+      <td
+        className="text-right"
+      >
+        <span
+          className="text-success"
+        >
+          + 
+          1
+           additions
+        </span>
+      </td>
+      <td
+        className="text-right"
+      >
+        <span
+          className="text-danger"
+        >
+          - 
+          2
+           deletions
+        </span>
+      </td>
+      <td
+        className="text-right"
+      >
+        <span
+          className="text-info"
+        >
+          3
+           updates
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

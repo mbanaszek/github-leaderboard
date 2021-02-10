@@ -5,7 +5,7 @@ import { RepositoryURLInput } from "./components/RepositoryURLInput";
 import { isNil } from "./functional/logic";
 import { Maybe } from "./functional/maybe";
 import { ContributorsStatsTable, EmptyContributorsStatsTable } from "./components/ContributorsStatsTable";
-import { getRepositoryDetails, RepositoryDetails } from "./graphql/contributorsStatistics";
+import {getRepositoryDetails, RepositoryDetails} from "./graphql/repositoryDetails";
 
 interface AppState {
     repositoryURL: string;

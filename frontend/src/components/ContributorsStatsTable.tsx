@@ -5,12 +5,12 @@ import { useQuery } from "@apollo/client";
 
 import {
     ContributorStats,
-    createContributorsStatisticsQuery,
-    RepositoryDetails
+    createContributorsStatisticsQuery
 } from "../graphql/contributorsStatistics";
 import { Loader } from "./Loader";
 import { isNil, isNotNil } from "../functional/logic";
 import { ErrorMessage } from "./ErrorMessage";
+import {RepositoryDetails} from "../graphql/repositoryDetails";
 
 interface ContributorsStatsTableProps {
     repositoryDetails: RepositoryDetails;
@@ -25,9 +25,9 @@ export const ContributorsStatsTable: FunctionComponent<ContributorsStatsTablePro
 
     if (isNotNil(error)) return <ErrorMessage text={isNil(error.networkError) ? error.message : "Network problems."}/>;
 
-    if (isNil(data)) return <EmptyContributorsStatsTable/>;
+    if (isNil(data) || isNil(data.contributorsStats)) return <EmptyContributorsStatsTable/>;
 
-    const sortedContributedStats = sortContributorsStatsByHighestTotalChanges(data.contributorsStats);
+    const sortedContributedStats = isNotNil(data.contributorsStats) ? sortStatsByHighestTotalChanges(data.contributorsStats) : [];
     return (
         <StatsTable>
             { sortedContributedStats.map((contributorStats, index) => (
@@ -82,7 +82,7 @@ export const StatsTable: FunctionComponent<StatsTableProps> = ({ children }: Sta
     </Table>
 );
 
-const sortContributorsStatsByHighestTotalChanges = (stats: ContributorStats[]): ContributorStats[] => {
+const sortStatsByHighestTotalChanges = (stats: ContributorStats[]): ContributorStats[] => {
     return stats.slice().sort((
         firstStats,
         secondStats

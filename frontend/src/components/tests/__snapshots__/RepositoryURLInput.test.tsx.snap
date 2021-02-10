@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render repository URL field Empty field. 1`] = `
+<div>
+  <div
+    className="form-group"
+  >
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="e.g. 'https://github.com/stoplightio/prism' or 'stoplightio/prism'"
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`Render repository URL field With value. 1`] = `
+<div>
+  <div
+    className="form-group"
+  >
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="e.g. 'https://github.com/stoplightio/prism' or 'stoplightio/prism'"
+      type="text"
+      value="https://github.com/mbanaszek/github-leaderboard"
+    />
+  </div>
+</div>
+`;
