@@ -10,7 +10,7 @@ import {
 import { Loader } from "./Loader";
 import { isNil, isNotNil } from "../functional/logic";
 import { ErrorMessage } from "./ErrorMessage";
-import {RepositoryDetails} from "../graphql/repositoryDetails";
+import { RepositoryDetails } from "../graphql/repositoryDetails";
 
 interface ContributorsStatsTableProps {
     repositoryDetails: RepositoryDetails;

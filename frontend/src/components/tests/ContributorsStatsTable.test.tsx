@@ -9,7 +9,7 @@ import {
 } from "../../graphql/contributorsStatistics";
 import { Maybe } from "../../functional/maybe";
 import { isNil } from "../../functional/logic";
-import {RepositoryDetails} from "../../graphql/repositoryDetails";
+import { RepositoryDetails } from "../../graphql/repositoryDetails";
 
 describe("Rendering table", () => {
 

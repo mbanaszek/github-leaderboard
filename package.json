@@ -8,8 +8,10 @@
   },
   "type": "module",
   "scripts": {
+    "build-dev": "cd frontend/ && npm install  && npm run build",
+    "start-dev": "cd backend/ && npm install && ./node_modules/.bin/ts-node-dev express-app/runServer.ts",
     "start": "node backend/dist/express-app/runServer.js",
     "postinstall": "cd backend/ && npm install && ./node_modules/.bin/tsc --project tsconfig.production.json",
-    "heroku-postbuild": "cd frontend/ && npm install  && npm run build"
+    "heroku-postbuild": "cd frontend/ && npm install && npm run build"
   }
 }

@@ -1,5 +1,5 @@
-import {DocumentNode, gql} from "@apollo/client";
-import {RepositoryDetails} from "./repositoryDetails";
+import { DocumentNode, gql } from "@apollo/client";
+import { RepositoryDetails } from "./repositoryDetails";
 
 export type ContributorStats = {
     name: string;

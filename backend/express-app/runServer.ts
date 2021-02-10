@@ -1,4 +1,4 @@
-import { app } from "./app";
+import {app, FRONTEND_BUILD_DIR} from "./app";
 
 const PORT = process.env.PORT || 8001;
 

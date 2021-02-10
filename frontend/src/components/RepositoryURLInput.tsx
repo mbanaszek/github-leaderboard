@@ -13,7 +13,7 @@ export const RepositoryURLInput: FunctionComponent<RepositoryURLInputProps> = ({
     return (
         <div>
             <Form.Group controlId="repositoryURL">
-                <input
+                <Form.Control
                     type="text"
                     className={"form-control"}
                     placeholder="e.g. 'https://github.com/stoplightio/prism' or 'stoplightio/prism'"

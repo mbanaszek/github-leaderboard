@@ -1,6 +1,6 @@
-import {Maybe} from "../functional/maybe";
+import { Maybe } from "../functional/maybe";
 import parseGithubURL from "parse-github-url";
-import {isNil} from "../functional/logic";
+import { isNil } from "../functional/logic";
 
 export type RepositoryDetails = {
     owner: string;
